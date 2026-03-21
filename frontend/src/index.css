@@ -1,0 +1,112 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;600;700&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  *, :root {
+    --background: 230 15% 12%;
+    --foreground: 0 0% 100%;
+
+    --card: 230 15% 16%;
+    --card-foreground: 0 0% 100%;
+
+    --popover: 230 15% 18%;
+    --popover-foreground: 0 0% 100%;
+
+    --primary: 1 77% 55%;
+    --primary-foreground: 0 0% 100%;
+
+    --secondary: 122 45% 33%;
+    --secondary-foreground: 0 0% 100%;
+
+    --muted: 230 12% 22%;
+    --muted-foreground: 0 0% 100% / 0.6;
+
+    --accent: 51 100% 50%;
+    --accent-foreground: 230 15% 12%;
+
+    --destructive: 0 84% 60%;
+    --destructive-foreground: 0 0% 100%;
+
+    --border: 230 12% 24%;
+    --input: 230 12% 24%;
+    --ring: 1 77% 55%;
+
+    --radius: 0.75rem;
+
+    --sidebar-background: 230 15% 10%;
+    --sidebar-foreground: 0 0% 100%;
+    --sidebar-primary: 1 77% 55%;
+    --sidebar-primary-foreground: 0 0% 100%;
+    --sidebar-accent: 230 12% 22%;
+    --sidebar-accent-foreground: 0 0% 100%;
+    --sidebar-border: 230 12% 24%;
+    --sidebar-ring: 1 77% 55%;
+
+    /* Custom tokens */
+    --timer-focus: 1 77% 55%;
+    --timer-short-break: 199 89% 48%;
+    --timer-long-break: 122 45% 33%;
+    --gold: 51 100% 50%;
+    --silver: 0 0% 75%;
+    --bronze: 30 60% 50%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply bg-background text-foreground font-sans antialiased;
+    font-family: 'Inter', sans-serif;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    font-family: 'Inter', sans-serif;
+    font-weight: 700;
+  }
+}
+
+@layer utilities {
+  .font-timer {
+    font-family: 'JetBrains Mono', monospace;
+  }
+
+  .text-muted-87 {
+    color: hsl(0 0% 100% / 0.87);
+  }
+
+  .text-muted-60 {
+    color: hsl(0 0% 100% / 0.6);
+  }
+
+  .glow-primary {
+    box-shadow: 0 0 40px hsl(1 77% 55% / 0.3);
+  }
+
+  .glow-gold {
+    box-shadow: 0 0 20px hsl(51 100% 50% / 0.2);
+  }
+
+  .pulse-soft {
+    animation: pulse-soft 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+  }
+
+  @keyframes pulse-soft {
+    0%, 100% { transform: scale(1); }
+    50% { transform: scale(1.03); }
+  }
+
+  .card-hover {
+    @apply transition-all duration-300;
+  }
+
+  .card-hover:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 30px hsl(0 0% 0% / 0.3);
+  }
+}
