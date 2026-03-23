@@ -1,7 +1,7 @@
 import sqlite3
 import os
 
-DATABASE_PATH = os.path.join(os.path.dirname(__file__), "focus.db")
+DATABASE_PATH = "app/database/focus.db"
 
 
 def conexao_banco_dados():
@@ -79,5 +79,3 @@ def create_tables():
 
 if __name__ == "__main__":
     create_tables()
-    
-    
