@@ -20,7 +20,7 @@ export function useTimer() {
   const originalTitle = useRef(document.title);
   const autoStartRef = useRef(false);
 
-  // ─── Carrega config do banco ao iniciar ───────────────────────────────────
+  // Carrega a config do banco
   const loadConfig = useCallback(() => {
     const user = localStorage.getItem('user');
     const accessToken = localStorage.getItem('access_token');
@@ -117,7 +117,7 @@ export function useTimer() {
     if (mode === 'longBreak') setTimeLeft(seconds);
   }, [mode]);
 
-  // ─── Salva config no banco (chamado ao soltar o slider no Index) ──────────
+  // Salva config no banco (chamado ao soltar o slider no Index) 
   const saveConfig = useCallback((updates = {}) => {
     const userStr = localStorage.getItem('user');
     const accessToken = localStorage.getItem('access_token');
@@ -141,8 +141,8 @@ export function useTimer() {
     }).catch(() => {});
   }, [config]);
 
-  // ─── Tick do timer ────────────────────────────────────────────────────────
-  useEffect(() => {
+  // Tick do timer 
+    useEffect(() => {
     if (isRunning) {
       intervalRef.current = window.setInterval(() => {
         setTimeLeft((prev) => {

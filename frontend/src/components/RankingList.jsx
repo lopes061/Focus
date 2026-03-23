@@ -1,7 +1,3 @@
-/**
- * Props: users (array of { position, name, hours, minutes, avatar }), limit (number)
- */
-
 const medals = ['🥇', '🥈', '🥉'];
 
 export default function RankingList({ users, limit }) {

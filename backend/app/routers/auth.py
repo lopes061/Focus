@@ -102,7 +102,7 @@ def login(data: LoginSchema):
     user = cursor.fetchone()
     banco.close()
 
-    # Mensagem genérica — não revela se email existe
+    # Mensagem genérica(por segurança) — não revela se email existe
     if not user or not verify_password(data.password, user["password"]):
         raise HTTPException(status_code=401, detail="Email ou senha incorretos")
 
@@ -181,13 +181,13 @@ def forgot_password(data: ForgotPasswordSchema):
     random.shuffle(partes)
     senha_temporaria = "".join(partes)
 
-    # 1. Tenta enviar o email PRIMEIRO
+    # Tenta enviar o email PRIMEIRO
     try:
         enviar_email_senha_temporaria(user["email"], user["username"], senha_temporaria)
     except Exception:
         raise HTTPException(status_code=500, detail="Erro ao enviar email. Tente novamente.")
 
-    # 2. Salva senha hasheada e marca como temporária
+    # Salva senha hasheada e marca como temporária
     banco = conexao_banco_dados()
     cursor = banco.cursor()
     cursor.execute(
@@ -197,7 +197,7 @@ def forgot_password(data: ForgotPasswordSchema):
     banco.commit()
     banco.close()
 
-    # 3. Invalida todos os tokens ativos
+    # Invalida todos os tokens ativos
     revoke_all_user_tokens(user["id"])
 
     return {"message": "Se esse email estiver cadastrado, você receberá a nova senha em breve."}
@@ -206,7 +206,7 @@ def forgot_password(data: ForgotPasswordSchema):
 @router.post("/change-password")
 def change_passsword(
     data: ChangePasswordSchema,
-    current_user: dict = Depends(get_current_user) # segurança que verifica o token e entrega o usuario logado 
+    current_user: dict = Depends(get_current_user) # Segurança que verifica o token e entrega o usuario logado 
 ):
     import re
     if len(data.nova_senha) < 8:
@@ -219,7 +219,7 @@ def change_passsword(
     banco = conexao_banco_dados()
     cursor = banco.cursor()
 
-    #agora salvamos a nova senha e removemos flag temporaria
+    # Agora salvamos a nova senha e removemos flag temporaria
     
     cursor.execute(
         "UPDATE users SET password = ?, senha_temporaria = 0 WHERE id = ? ",
@@ -228,7 +228,7 @@ def change_passsword(
     banco.commit()
     banco.close()
 
-    # invalidamos tokens antigos e emite novos
+    # Invalidamos tokens antigos e emite novos
 
     revoke_all_user_tokens(current_user["id"])
     access_token = create_access_token(current_user["id"],current_user["email"])

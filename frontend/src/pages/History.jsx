@@ -11,7 +11,7 @@ const statCards = [
   { icon: TrendingUp,  label: 'Média diária',   key: 'dailyAverage' },
 ];
 
-// ─── Helpers de data ──────────────────────────────────────────────────────────
+// Helpers de data
 
 function startOf(period) {
   const now = new Date();
@@ -41,7 +41,7 @@ function formatDate(dateStr) {
   return d.toLocaleDateString('pt-BR', { day: 'numeric', month: 'long', year: 'numeric' });
 }
 
-// ─── Componente ───────────────────────────────────────────────────────────────
+// Componente 
 
 export default function History() {
   const { user } = useAuth();

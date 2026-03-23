@@ -1,8 +1,3 @@
-/**
- * Pure UI component — no internal state.
- * Props: timeFormatted (string), progress (0-1), mode ('focus'|'shortBreak'|'longBreak'), isRunning (bool)
- */
-
 const modeColors = {
   focus: 'stroke-timer-focus',
   shortBreak: 'stroke-timer-short',

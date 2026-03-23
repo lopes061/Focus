@@ -67,7 +67,7 @@ def enviar_feedback(data: FeedbackSchema):
         msg = MIMEMultipart("alternative")
         msg["Subject"] = assunto
         msg["From"] = SMTP_USER
-        msg["To"] = SMTP_USER  # envia para o próprio email do dev
+        msg["To"] = SMTP_USER  # envia para o meu email o mesmo que usa para forget_password
         if data.email:
             msg["Reply-To"] = data.email  # facilita responder ao usuário
         msg.attach(MIMEText(corpo_html, "html"))
