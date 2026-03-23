@@ -5,8 +5,12 @@ from fastapi import Depends, HTTPException, status
 from fastapi.security import HTTPBearer, HTTPAuthorizationCredentials
 from app.database.database import conexao_banco_dados
 import secrets
+import os 
+from dotenv import load_dotenv
+from pathlib import Path
 
-SECRET_KEY = "63f4945d921d599f27ae4fdf5bada3f1"
+load_dotenv(dotenv_path=Path.cwd() / "/.env")
+SECRET_KEY = os.getenv("SECRET_KEY")
 ALGORITHM = "HS256"
 ACCESS_TOKEN_EXPIRE_MINUTES = 15
 REFRESH_TOKEN_EXPIRE_DAYS = 7
